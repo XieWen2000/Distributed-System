@@ -1,0 +1,5 @@
+Instructions:
+1. Before run the class, please modify the
+private static final String BASE_PATH = "http://18.208.248.198:8080/JavaServlets_war/skiers";
+in both part1 and part2. Replace the "18.208.248.198" with the ec2's Public IPv4 address.
+2. Please start SkierServlet.class first.
