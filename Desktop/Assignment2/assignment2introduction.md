@@ -3,13 +3,13 @@
 ## Design 
 The servlets run locally to generate 200k request while server, RabbitMQ and
 consumer all run on different EC2 instances.
-![ec2 instances](pictures/%E6%88%AA%E5%B1%8F2024-11-03%20%E4%B8%8B%E5%8D%889.49.55.png)
+![ec2 instances](Server/pictures/截屏2024-11-03%20下午9.49.55.png)
 
 ### Client-Assignment 1
-![Client](pictures/%E6%88%AA%E5%B1%8F2024-11-03%20%E4%B8%8B%E5%8D%889.56.04.png)
+![Client](Server/pictures/截屏2024-11-03%20下午9.56.04.png)
 
 ### Server
-![Server](pictures/%E6%88%AA%E5%B1%8F2024-11-03%20%E4%B8%8B%E5%8D%889.59.08.png)
+![Server](Server/pictures/截屏2024-11-03%20下午9.59.08.png)
 #### Overview
 The SkierServlet is a Java servlet designed to handle both 
 GET and POST requests for skier-related data in a RESTful 
@@ -40,7 +40,7 @@ The servlet uses `RabbitMQ `to send messages asynchronously. The connection is m
 The servlet parses the URL to ensure the request matches the expected pattern. This validation prevents incorrect requests from being processed.
 
 ## Consumer
-![consumer](pictures/%E6%88%AA%E5%B1%8F2024-11-03%20%E4%B8%8B%E5%8D%8810.05.18.png)
+![consumer](Server/pictures/截屏2024-11-03%20下午10.05.18.png)
 ### Overview
 The `MultiThreadedRabbitMQConsumer` is designed to efficiently handle and process messages from RabbitMQ in a concurrent and scalable manner. It leverages a thread pool to consume messages, allowing the system to dynamically scale based on the size of the message queue. The consumer utilizes a pooled object factory for RabbitMQ channels to maintain resource efficiency while ensuring high throughput.
 #### Major Components
@@ -63,16 +63,16 @@ The `MultiThreadedRabbitMQConsumer` is designed to efficiently handle and proces
 `Queue Monitoring:` A separate monitoring thread tracks the size of the message queue. If the queue grows beyond a certain threshold, additional consumer threads are added to handle the increased load.
 
 After generating the .jar file and upload it to a separate EC2 instance and execute it there.
-![RabbitMq consumer](pictures/%E6%88%AA%E5%B1%8F2024-11-03%20%E4%B8%8B%E5%8D%887.04.13.png)
+![RabbitMq consumer](Server/pictures/截屏2024-11-03%20下午7.04.13.png)
 
 ## Single Instance Tests
-![截屏2024-11-03 下午8.26.00.png](pictures/%E6%88%AA%E5%B1%8F2024-11-03%20%E4%B8%8B%E5%8D%888.26.00.png)
-![截屏2024-11-03 下午7.22.56.png](pictures/%E6%88%AA%E5%B1%8F2024-11-03%20%E4%B8%8B%E5%8D%887.22.56.png)
+![截屏2024-11-03 下午8.26.00.png](Server/pictures/截屏2024-11-03%20下午8.26.00.png)
+![截屏2024-11-03 下午7.22.56.png](Server/pictures/截屏2024-11-03%20下午7.22.56.png)
 With one instance, message rate of RabbitMQ is around **500/s**,
-![截屏2024-11-03 下午10.22.17.png](pictures/%E6%88%AA%E5%B1%8F2024-11-03%20%E4%B8%8B%E5%8D%8810.22.17.png)
+![截屏2024-11-03 下午10.22.17.png](Server/pictures/截屏2024-11-03%20下午10.22.17.png)
 
 ## Load Balanced Instance Tests
-![截屏2024-11-03 下午10.28.02.png](pictures/%E6%88%AA%E5%B1%8F2024-11-03%20%E4%B8%8B%E5%8D%8810.28.02.png)
+![截屏2024-11-03 下午10.28.02.png](Server/pictures/截屏2024-11-03%20下午10.28.02.png)
 With Load Balanced Instance, message rate of RabbitMQ is around **1800/s**,
-![截屏2024-11-03 下午10.31.34.png](pictures/%E6%88%AA%E5%B1%8F2024-11-03%20%E4%B8%8B%E5%8D%8810.31.34.png)
-![截屏2024-11-03 下午10.35.10.png](pictures/%E6%88%AA%E5%B1%8F2024-11-03%20%E4%B8%8B%E5%8D%8810.35.10.png)
+![截屏2024-11-03 下午10.31.34.png](Server/pictures/截屏2024-11-03%20下午10.31.34.png)
+![截屏2024-11-03 下午10.35.10.png](Server/pictures/截屏2024-11-03%20下午10.35.10.png)
